@@ -1,0 +1,29 @@
+<div class="sidebar">
+    <div class="mini-profile-view">
+        <img src="../../../assets/pp.png" alt="profile-pic">
+        <h4>Akshat Mahajan</h4>
+        <h6>Mahajan Electricals</h6>
+    </div>
+    <div class="side-nav-items">
+        <ng-container *ngFor="let indNavItem of sidenavItems;let i=index">
+            <ng-container *ngIf="indNavItem.hasChildNav; else withoutChildNav">
+                <div class="nav-item {{i}}" [ngClass]="{'active':selectedNavIndex == i}" (click)="sidenavSelected(i)">
+                    <i [ngClass]="indNavItem.iconClass"></i>
+                    <a href="javascript:void(0)">{{indNavItem.heading}}</a>
+                    <i class="fas  toggle-icon" [ngClass]="{'fa-caret-up' : selectedNavIndex == i, 'fa-caret-down' : selectedNavIndex != i}"></i>
+                </div>
+                <div class="child-nav-items" *ngIf="selectedNavIndex == i"> 
+                    <ng-container *ngFor="let indChildNavItem of indNavItem.childNavItems;">
+                        <a href="javascript:void(0)">{{indChildNavItem.heading}}</a>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <ng-template #withoutChildNav>
+                <div class="nav-item {{i}}" [ngClass]="{'active': selectedNavIndex == i}" (click)="sidenavSelected(i)">
+                    <i [ngClass]="indNavItem.iconClass"></i>
+                    <a href="javascript:void(0)">{{indNavItem.heading}}</a>
+                </div>
+            </ng-template>
+        </ng-container>
+    </div>
+</div>

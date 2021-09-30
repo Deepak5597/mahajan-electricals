@@ -1,0 +1,18 @@
+<div class="list-nav">
+    <div class="search-form">
+        <i class="fas fa-filter"></i>
+        <!-- <input type="text" name="search" id="searchBox"> -->
+        <i class="fas fa-search"></i>
+    </div>
+    <ul class="list-content">
+
+        <ng-container *ngIf="context == 'parties'">
+            <li class="list-content-item">
+                <label>Party</label> <label>Amount</label>
+            </li>
+            <li class="list-content-item" *ngFor="let indSideListItem of sideListItems;let i=index" [ngClass]="{'active' : selectedSideListItem == i}" (click)="selectedSideListItem = i">
+                <label>{{indSideListItem.number}}</label> <label>{{indSideListItem.totalSale}}</label> 
+            </li>
+        </ng-container>
+    </ul>
+</div>  

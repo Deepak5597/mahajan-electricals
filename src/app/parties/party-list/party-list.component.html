@@ -1,0 +1,11 @@
+<me-action-header heading="Parties" [count]="partiesData.length" context="parties" (actionEmitter)="headerActionHandler($event)"></me-action-header>
+<div class="row no-gutters content-block">
+    <div class="col wx-20">
+        <me-side-list [sideListItmes]="partiesData" context="parties"></me-side-list>   
+    </div>
+    <div class="col-auto">
+        <div class="row info-block">
+
+        </div>
+    </div>
+</div>

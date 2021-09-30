@@ -1,22 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PartyListComponent } from './party-list/party-list.component';
+import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'list',
-    component: PartyListComponent
-  },
-  {
     path: '',
-    redirectTo: 'list',
-    pathMatch: 'full' 
+    component: DashboardComponent
   }
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PartiesRoutingModule { }
+export class DashboardRoutingModule { }

@@ -1,0 +1,9 @@
+<div class="action-header">
+    <h4>{{heading}} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span> {{count}}</h4>
+    <ng-container *ngIf="context == 'parties'">
+        <ul class="action-list">
+            <li><a class="add-btn" href="javascript:void(0)" (click)="triggerAction('add')">Add<i class="fas fa-plus"></i></a></li>
+            <li><a class="export-btn" href="javascript:void(0)" (click)="triggerAction('export')">Export<i class="fas fa-download"></i></a></li>
+        </ul>
+    </ng-container>
+</div>

@@ -1,4 +1,254 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+/* Useful Mixins Starts*/
+
+@mixin flex($direction, $justify, $align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin commonBoxShadow(){
+    box-shadow: 0px 1px 4px dimgrey;
+}
+
+@mixin commonButton($bg-color,$color, $radius){
+    padding: 0.5rem 1rem;
+    background: $bg-color;
+    color: $color;
+    border-radius: $radius;
+}
+/* Mixin Ends*/
+
+/* Useful Functions */
+@function toRem($value) {
+    $remValue: ($value / 16) + rem; 
+    @return $remValue;
+}
+/* Userful Funcations Ends */
+
+/* variables Starts*/
+$bg-color:rgb(43, 43, 179);
+$accent-bg-color: rgb(189 78 98);
+$light-gray-bg:rgb(236 236 236);;
+$light-bg: #f5f0f0;
+$cx-padding: 1rem;
+$off-white-bg:#f5f0f0;
+$fs-xl: toRem(24);
+$fs-lg: toRem(20);
+$fs-md: toRem(16);
+$fs-sm: toRem(14);
+$fs-xs: toRem(12);
+$success-color: rgb(22, 136, 22);
+$danger-color: red;
+/* Variables Ends*/
+
+*,*:before,*:after{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html,body{
+    height:100%;
+    font-family: 'Roboto', sans-serif;
+} 
+
+/* Common Css Starts*/
+h3{
+    margin:0;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.wx-20{
+    max-width: 20%;
+}
+/* Common Css Ends*/
+
+/* Header Css Starts */
+header{
+    background-color: $bg-color;
+    @include flex(row, space-between, center);
+    height: 55px;
+    h3{
+        font-size: $fs-md;
+        color:white;
+        display: table;
+        cursor: pointer;
+    }
+    nav{
+        ul{
+            li{
+                a{
+                    color: white;
+                }
+            }
+        }
+    }
+}
+/* Header Css Ends */
+
+/* Sidebar Css Starts */
+
+.sidebar{
+    @include commonBoxShadow();
+    background-color: white;
+    overflow-y: scroll;
+    height: 100vh;
+    /* Mini Profile Section */
+    .mini-profile-view{
+        @include flex(column, center , center);
+        background-color: $light-bg;
+        padding: 1rem 0rem;
+        img{
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            margin-bottom: 0.75rem;
+        }
+        h4{ 
+            font-size: $fs-md;
+        }
+        h6{
+            font-size: $fs-xs;
+        }
+    }    
+
+    /* Sidebar Navigations*/
+    .side-nav-items{
+        .nav-item{
+            padding: 1rem 1rem 1rem 2rem;
+            cursor: pointer;
+            @include flex(row, start, center );
+            i{
+                min-width: toRem(50);
+            }
+            a{
+                cursor: inherit;
+                font-weight: 700;
+                margin-bottom: 0;
+                color:black;
+                text-decoration: none;
+            }
+            .toggle-icon{
+                margin-left: 2.5rem;
+                font-size: 1.2rem;
+            }
+            &:hover{
+                background-color: #e9e9f7;
+                color:var($bg-color);
+                a{
+                    color:var($bg-color);
+                }
+            }
+            &.active{
+                background-color: $bg-color;
+                color:white;
+                a{
+                    color:white;
+                }
+            }
+        }
+        
+        .child-nav-items{
+            @include flex(column, center, center);
+            background-color: #f5f0f0;
+            a{
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                color:black;
+                text-decoration: none;
+                &:hover{
+                    font-weight: 700;        
+                }
+            }
+        }
+    }
+}
+
+/* Sidebar Css Ends */
+
+/* Main Content Css Starts*/
+
+/* Action Header*/
+.main-content{
+    height: calc(100vh - 55px);
+    .action-header{
+        @include commonBoxShadow();
+        height: toRem(60);
+        padding: 0.25rem 2rem;
+        @include flex(row, space-between, center);
+        h4{
+            margin: 0;
+        }
+        ul{
+            @include flex(row, space-between, center);
+            li{
+                margin-right:1rem;
+                a{
+                    &.add-btn{
+                        @include commonButton($success-color,white, 5px);
+                    }
+                    &.export-btn{
+                        @include commonButton($accent-bg-color,white, 5px);
+                    }
+                    i{
+                        margin-left: 0.50rem;
+                    }
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .content-block{
+        height:100%;
+        width:100%;
+        overflow-y:scroll;
+        /* Side List Css Starts */
+        .list-nav{
+            @include commonBoxShadow();
+            height:100%;
+            .search-form{
+                padding: 1rem;
+                @include flex(row, space-between, center);
+            }
+            .list-content{
+                .list-content-item{
+                    padding: 1rem;
+                    cursor: pointer;
+                    @include flex(row, space-between, center);
+                    &:first-child{
+                        background: $accent-bg-color;
+                        color:white;
+                    }
+                    &.active{
+                        background-color: $light-gray-bg;
+                        font-weight: 700;
+                    }
+                    &:hover{
+                        // background-color: $light-gray-bg;
+                        font-weight: 700;
+                    }
+                    label{
+                        margin:0;
+                    }
+                }
+            }
+        }
+        /* Side List Css Ends */
+    }
+}
+
+/* Main Content Css Ends*/
